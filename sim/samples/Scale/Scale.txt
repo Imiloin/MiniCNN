@@ -1,0 +1,10 @@
+//量化参数
+float   Input_Scale         = 1.0679423809051514;
+float   Conv_Weight_Scale  = 0.00013957526243757457;
+float   Conv_Out_Scale     = 0.0220869779586792;
+float   DWConv_Weight_Scale  = 0.035985883325338364;
+float   DWConv_Out_Scale     = 0.02780904993414879;
+float   PWConv_Weight_Scale  = 0.007854732684791088;
+float   PWConv_Out_Scale     = 0.025896944105625153;
+float   Linear_Weight_Scale = 0.0012917005642173632;
+float   Linear_Out_Scale    = 0.09915946424007416;

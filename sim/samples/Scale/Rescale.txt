@@ -1,0 +1,15 @@
+// 未进行定点化的Rescale值（Linear指全连接层FC）
+float   Conv_M   = 0.00674869773320308;
+float   DWConv_M   = 0.028581322041294627;
+float   PWConv_M   = 0.008434688377123984;
+float   Linear_M  = 0.0003373464910192874;
+
+// 定点化后的Rescale值（与未定点化的M值误差<1%）
+int Conv_M0 = 111;
+int Conv_n = 14;
+int DWConv_M0 = 59;
+int DWConv_n = 11;
+int PWConv_M0 = 69;
+int PWConv_n = 13;
+int Linear_M0 = 11;
+int Linear_n = 15;
