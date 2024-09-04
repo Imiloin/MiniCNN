@@ -6,6 +6,10 @@
 # TEMP
 temp/
 
+# xvlog generated files
+*.pb
+
+
 # Ignore all log files
 *.log
 
