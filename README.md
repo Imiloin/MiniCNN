@@ -53,7 +53,7 @@
 
 ### 4. PostProcess Layer
 
-本设计将最大池化、全连接层和 Sigmoid 输出等操作整合为一个 PostProcess 层，输入为 32 通道 18x2 的特征图，在全连接层中使用两套不同的权重和偏置，输出为 2 个 FLOAT32 数据，
+本设计将最大池化、全连接层和 Sigmoid 输出等操作整合为一个 PostProcess 层，输入为 32 通道 18x2 的特征图，在全连接层中使用两套不同的权重和偏置，输出为 2 个 FLOAT32 数据。
 
 每个周期，后处理层接收上一层输出的 2x2 个数据，经过最大池化层后得到单个数据。在硬件层面，实际不需要展开操作，直接这个数据与权重相乘后添加到全连接层缓存的乘累加结果中，经过 288 个周期即可得到一张特征图的对应的 2 个全连接层 INT32 输出。INT32 输出经过重量化变为 INT8 数值，再通过 Sigmoid 激活函数输出最终分类结果。为避免复杂的浮点运算，本设计使用 SRAM 查找表来实现 Sigmoid 函数。
 
@@ -79,11 +79,12 @@ modelsim
 此后在 ModelSim 的命令窗口中，运行编译脚本和仿真脚本
 
 ```modelsim
+ModelSim> project close
 ModelSim> do build.do
 ModelSim> do sim.do
 ```
 
-在 ModelSim 控制台中，可以看到 496 个测试输入的仿真结果。
+在 ModelSim 控制台中，可以看到 496 个测试输入的仿真结果。在 `sim/samples` 目录下包含了用于调整数据格式的 python 脚本。
 
 <div align="center">Tab 1: 部分仿真结果与理论结果</div>
 <div align="center"><img src="README.assets/sim-result.svg" alt="sim-result" width="500"></img></div>
